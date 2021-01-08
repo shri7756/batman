@@ -1,8 +1,12 @@
 package main
 
 import (
-        "fmt"
+	"fmt"
+	"log"
+	"net/http"
+	"os"
 )
+
 func main() {
- fmt.printf("A wealthy American playboy")
-}
+fmt.Fprintf(w, "Hello, world!\n")
+	}
