@@ -1,0 +1,18 @@
+
+# [START container_batman_service]
+apiVersion: v1
+kind: Service
+metadata:
+  name: batman
+  labels:
+    app: batman
+spec:
+  selector:
+    app: batman
+    tier: web
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
+  loadBalancerIP: 128.0.1.1
+# [END container_batman_service]

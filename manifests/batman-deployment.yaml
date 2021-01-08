@@ -1,0 +1,25 @@
+
+# [START container_batman_deployment]
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: batman
+  labels:
+    app: batman
+spec:
+  selector:
+    matchLabels:
+      app: batman
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: batman
+        tier: web
+    spec:
+      containers:
+      - name: batman-app
+        image: demo/batman-app
+        ports:
+        - containerPort: 8080
+# [END container_batman_deployment]
