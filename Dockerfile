@@ -1,8 +1,19 @@
-FROM golang:1.8-alpine
-ADD . /go/src/batman
-RUN go install batman
+FROM golang:1.10
 
-FROM alpine:latest
-COPY --from=0 /go/bin/batman .
-ENV PORT 8080
-CMD ["./batman"]
+# Set the Current Working Directory inside the container
+WORKDIR $GOPATH/src/github.com/batman
+
+# Copy everything from the current directory to the PWD (Present Working Directory) inside the container
+COPY . .
+
+# Download all the dependencies
+RUN go get -d -v ./...
+
+# Install the package
+RUN go install -v ./...
+
+# This container exposes port 8080 to the outside world
+EXPOSE 8080
+
+# Run the executable
+CMD ["batman"]
