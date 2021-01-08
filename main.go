@@ -26,7 +26,6 @@ func main() {
 // batman responds to the request with a plain-text.
 func batman(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Serving request: %s", r.URL.Path)
-	host, _ := os.Hostname()
 	fmt.Fprintf(w, "A wealthy American playboy\n")
 }
 
