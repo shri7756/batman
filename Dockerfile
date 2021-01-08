@@ -1,8 +1,8 @@
-FROM golang:1.10
-# Set the Current Working Directory inside the container
-WORKDIR $GOPATH/src/github.com/shri7756/batman
-COPY . .
-RUN go get -d -v ./...
-RUN go install -v ./...
-EXPOSE 8080
-CMD ["batman"]
+FROM golang:1.8-alpine
+ADD . /go/src/batman
+RUN go install batman
+
+FROM alpine:latest
+COPY --from=0 /go/bin/batman .
+ENV PORT 8080
+CMD ["./batman"]
