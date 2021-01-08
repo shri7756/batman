@@ -1,4 +1,4 @@
-FROM golang:1.8-alpine
+FROM golang:batman
 ADD . /go/src/batman
 RUN go install batman
 COPY --from=0 /go/bin/batman .
